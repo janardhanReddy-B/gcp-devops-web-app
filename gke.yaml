@@ -16,7 +16,7 @@ spec:
       - name: gcp-devops-gke
         image: gcr.io/web-app-project-gcp/gcpdevops:latest
         ports:
-        - containerPort: 11888/hello
+        - containerPort: 11888
         env:
           - name: PORT
             value: "11888"
