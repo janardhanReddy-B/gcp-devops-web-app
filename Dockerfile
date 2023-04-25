@@ -1,10 +1,14 @@
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-buster
 
-WORKDIR /app
+ENV APPENV=dev
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN apt-get update && apt-get install -y curl
 
-COPY . .
+COPY requirements.txt /
+RUN pip install --no-cache-dir -r /requirements.txt
 
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+COPY app.py /
+
+EXPOSE 11888
+
+CMD [ "python", "/app.py" ]
